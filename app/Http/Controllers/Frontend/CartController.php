@@ -3,43 +3,40 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Http\Request;
-
 
 class CartController extends Controller
 {
     public function AddToCart(Request $request, $id)
     {
 
-        $product = Product::findOrFail($id);
-        
-        Cart::add([
-
-            'id' => $id,
-            'name' => $request->product_name,
-            'qty' => $request->quantity,
-            'price' => $product->discount_price == NULL ? $product->selling_price : $product->discount_price,
-            'weight' => 1,
-            'options' => [
-                'image' => $product->product_thambnail,
-                'vendor' => $request->vendor,
-                'variant_value' => $request->variant_value,
-                'variant_price' => $request->variant_price,
-
-            ],
-        ]);
-        return response()->json(['success' => 'Successfully Added on Your Cart' ]);
         // 
-
     } // End Method
 
 
     public function AddToCartDetails(Request $request, $id)
     {
-        // 
-    } // End Method
+        $product = Product::findOrFail($id);
+
+        Cart::add([
+            'id' => $id,
+            'name' => $product->product_name,
+            'qty' => $request->quantity ?? 1,
+            'price' => $product->selling_price,
+            'weight' => 0,
+            'options' => [
+                'image' => $product->image
+            ]
+        ]);
+
+        return response()->json([
+            'success' => 'Sản phẩm đã được thêm vào giỏ hàng!'
+        ]);// End Method
+    }
+
+
 
 
     public function AddMiniCart()
@@ -58,8 +55,17 @@ class CartController extends Controller
 
     public function MyCart()
     {
-        return view('frontend.mycart.view_mycart');
+        // $cart = session()->get('cart', []);
+        $carts = Cart::content();
+        // dd($cart); // Kiểm tra dữ liệu giỏ hàng
+        return view('frontend.mycart.view_mycart', compact('carts'));
     } // End Method
+
+    //update cart
+    public function UpdateCart($id, $change)
+    {
+
+    }//end method
 
 
     public function GetCartProduct()

@@ -1,24 +1,25 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
-use App\Models\Product;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 
 class VendorProductController extends Controller
 {
     public function VendorAllProduct()
-{
-    $products = Product::latest()->get(); // Lấy sản phẩm mới nhất
-    dd($products); // Kiểm tra dữ liệu trước khi hiển thị
-    return view('vendor.backend.product.vendor_product_all', compact('products'));
-}
-
+    {
+        return view('vendor.backend.product.vendor_product_all');
+    } // End Method 
 
     public function VendorAddProduct()
     {
+
         return view('vendor.backend.product.vendor_product_add');
-    }
+    } // End Method 
+
+
 
     public function VendorStoreProduct(Request $request)
     {

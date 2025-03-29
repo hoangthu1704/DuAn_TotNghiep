@@ -17,6 +17,7 @@ class ProductsTableSeeder extends Seeder
             [
                 'brand_id' => 1,
                 'category_id' => 1,
+                'sub_category_id' => 2,
                 'product_name' => 'A',
                 'product_slug' => 'a',
                 'product_code' => '123456789',
@@ -26,7 +27,7 @@ class ProductsTableSeeder extends Seeder
                 'discount_price' => 80,
                 'short_descp' => 'a',
                 'long_descp' => 'b',
-                'product_thumbnail' => '1739820204509863.webp',
+                'product_thumnail' => '1739820204509863.webp',
                 'vendor_id' => 3,
                 'status' => 0,
             ],
