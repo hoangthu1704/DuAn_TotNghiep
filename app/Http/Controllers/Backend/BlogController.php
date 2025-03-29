@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\BlogPost;
 use Illuminate\Http\Request;
 use App\Models\BlogCategory;
-use App\Models\BlogPost;
 use Image;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
@@ -114,12 +114,19 @@ class BlogController extends Controller
 
     public function AllBlog()
     {
-        return view('frontend.blog.home_blog');
+        $blogposts = BlogPost::all();
+        return view('frontend.blog.home_blog', compact('blogposts'));
     } // End Method 
 
     public function BlogDetails($id, $slug)
     {
-        return view('frontend.blog.blog_details');
+        $blogpost = BlogPost::findOrFail($id);
+
+        if ($blogpost->post_slug !== $slug) {
+            abort(404);
+        }
+
+        return view('frontend.blog.blog_details', compact('blogpost'));
     } // End Method 
 
 

@@ -9,7 +9,8 @@
                          <h4>
                              Everyday Fresh &amp; Clean with Our Products
                          </h4>
-                         <a href="https://www.facebook.com/" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>
+                         <a href="https://www.facebook.com/" class="btn btn-xs">Shop Now <i
+                                 class="fi-rs-arrow-small-right"></i></a>
                      </div>
                  </div>
              </div>
@@ -20,7 +21,8 @@
                          <h4>
                              Make your Breakfast Healthy and Easy
                          </h4>
-                         <a href="https://www.youtube.com/" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>
+                         <a href="https://www.youtube.com/" class="btn btn-xs">Shop Now <i
+                                 class="fi-rs-arrow-small-right"></i></a>
                      </div>
                  </div>
              </div>
@@ -31,7 +33,8 @@
                          <h4>
                              The best Organic Products Online
                          </h4>
-                         <a href="https://www.youtube.com/" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>
+                         <a href="https://www.youtube.com/" class="btn btn-xs">Shop Now <i
+                                 class="fi-rs-arrow-small-right"></i></a>
                      </div>
                  </div>
              </div>
@@ -39,4 +42,5 @@
 
          </div>
      </div>
- </section> <!--End banners-->
+ </section>
+ <!--End banners-->

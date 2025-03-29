@@ -32,16 +32,23 @@
                           <ul>
 
                               <li>
-                                  <a class="language-dropdown-active" href="#">English <i class="fi-rs-angle-small-down"></i></a>
+                                  <a class="language-dropdown-active" href="#">English <i
+                                          class="fi-rs-angle-small-down"></i></a>
                                   <ul class="language-dropdown">
                                       <li>
-                                          <a href="#"><img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/flag-fr.png" alt="" />Français</a>
+                                          <a href="#"><img
+                                                  src="https://digi-poly.id.vn/frontend/assets/imgs/theme/flag-fr.png"
+                                                  alt="" />Français</a>
                                       </li>
                                       <li>
-                                          <a href="#"><img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/flag-dt.png" alt="" />Deutsch</a>
+                                          <a href="#"><img
+                                                  src="https://digi-poly.id.vn/frontend/assets/imgs/theme/flag-dt.png"
+                                                  alt="" />Deutsch</a>
                                       </li>
                                       <li>
-                                          <a href="#"><img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/flag-ru.png" alt="" />Pусский</a>
+                                          <a href="#"><img
+                                                  src="https://digi-poly.id.vn/frontend/assets/imgs/theme/flag-ru.png"
+                                                  alt="" />Pусский</a>
                                       </li>
                                   </ul>
                               </li>
@@ -58,7 +65,8 @@
           <div class="container">
               <div class="header-wrap">
                   <div class="logo logo-width-1">
-                      <a href="index.html"><img src="https://digi-poly.id.vn/upload/logo/1743021438232663.png" alt="logo" /></a>
+                      <a href="index.html"><img src="https://digi-poly.id.vn/upload/logo/1743021438232663.png"
+                              alt="logo" /></a>
                   </div>
                   <div class="header-right">
                       <div class="search-style-2">
@@ -67,18 +75,15 @@
                               <input type="hidden" name="_token" value="yXYSAa1lWMMSyKjWfSOqUzpQWSEVHQPIcSu4iSel">
                               <select class="select-active">
                                   <option>All Categories</option>
-                                  <option>Milks and Dairies</option>
-                                  <option>Wines & Alcohol</option>
-                                  <option>Clothing & Beauty</option>
-                                  <option>Pet Foods & Toy</option>
-                                  <option>Fast food</option>
-                                  <option>Baking material</option>
-                                  <option>Vegetables</option>
-                                  <option>Fresh Seafood</option>
-                                  <option>Noodles & Rice</option>
-                                  <option>Ice cream</option>
+                                  @foreach ($categories as $ct )
+
+                                  <option><a
+                                          href="{{ route('product.category', ['id' => $ct->id, 'slug' => $ct->category_slug]) }}">{{ $ct->category_name }}</a>
+                                  </option>
+                                  @endforeach
                               </select>
-                              <input onfocus="search_result_show()" onblur="search_result_hide()" name="search" id="search" placeholder="Search for items..." />
+                              <input onfocus="search_result_show()" onblur="search_result_hide()" name="search"
+                                  id="search" placeholder="Search for items..." />
                               <div id="searchProducts"></div>
                           </form>
                       </div>
@@ -107,14 +112,16 @@
 
                               <div class="header-action-icon-2">
                                   <a href="https://digi-poly.id.vn/compare">
-                                      <img class="svgInject" alt="Nest" src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-compare.svg" />
+                                      <img class="svgInject" alt="Nest"
+                                          src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-compare.svg" />
                                   </a>
                                   <a href="https://digi-poly.id.vn/compare"><span class="lable ml-0">Compare</span></a>
                               </div>
 
                               <div class="header-action-icon-2">
                                   <a href="https://digi-poly.id.vn/wishlist">
-                                      <img class="svgInject" alt="Nest" src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-heart.svg" />
+                                      <img class="svgInject" alt="Nest"
+                                          src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-heart.svg" />
                                       <span class="pro-count blue" id="wishQty">0 </span>
                                   </a>
                                   <a href="https://digi-poly.id.vn/wishlist"><span class="lable">Wishlist</span></a>
@@ -125,7 +132,8 @@
 
                               <div class="header-action-icon-2">
                                   <a class="mini-cart-icon" href="shop-cart.html">
-                                      <img alt="Nest" src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-cart.svg" />
+                                      <img alt="Nest"
+                                          src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-cart.svg" />
                                       <span class="pro-count blue" id="cartQty">0</span>
                                   </a>
                                   <a href="https://digi-poly.id.vn/mycart"><span class="lable">Cart</span></a>
@@ -162,7 +170,8 @@
 
                               <div class="header-action-icon-2">
                                   <a href="page-account.html">
-                                      <img class="svgInject" alt="Nest" src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-user.svg" />
+                                      <img class="svgInject" alt="Nest"
+                                          src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-user.svg" />
                                   </a>
 
 
@@ -171,7 +180,8 @@
                                   <span class="lable" style="margin-left: 2px; margin-right: 2px;"> | </span>
 
 
-                                  <a href="https://digi-poly.id.vn/register"><span class="lable ml-0">Register</span></a>
+                                  <a href="https://digi-poly.id.vn/register"><span
+                                          class="lable ml-0">Register</span></a>
 
 
 
@@ -196,7 +206,8 @@
           <div class="container">
               <div class="header-wrap header-space-between position-relative">
                   <div class="logo logo-width-1 d-block d-lg-none">
-                      <a href="index.html"><img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/logo.svg" alt="logo" /></a>
+                      <a href="index.html"><img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/logo.svg"
+                              alt="logo" /></a>
                   </div>
                   <div class="header-nav d-none d-lg-flex">
                       <div class="main-categori-wrap d-none d-lg-block">
@@ -207,92 +218,48 @@
                           <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
                               <div class="d-flex categori-dropdown-inner">
                                   <ul>
+                                      @foreach ($categories as $ct )
+
                                       <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388475103826.webp" alt="" /> Appliances </a>
+                                          <a
+                                              href="{{ route('product.category', ['id' => $ct->id, 'slug' => $ct->category_slug]) }}">
+                                              <img src="{{ $ct->category_image }}" alt="" />{{ $ct->category_name }}</a>
                                       </li>
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388510925410.webp" alt="" /> Beauty </a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388410112488.webp" alt="" /> Electronics </a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388456845535.webp" alt="" /> Fashion </a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388599418960.webp" alt="" /> Furniture </a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388649576724.webp" alt="" /> Grocery </a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388203907617.png" alt="" /> Meat &amp; Fish </a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388616630915.webp" alt="" /> Mobiles </a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388444682193.webp" alt="" /> Sweet Home </a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388803723655.webp" alt="" /> Travel </a>
-                                      </li>
-                                  </ul>
-                                  <ul class="end">
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388475103826.webp" alt="" /> Appliances </a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388510925410.webp" alt="" /> Beauty </a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388410112488.webp" alt="" /> Electronics </a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388456845535.webp" alt="" /> Fashion </a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388599418960.webp" alt="" /> Furniture </a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388649576724.webp" alt="" /> Grocery </a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388203907617.png" alt="" /> Meat &amp; Fish </a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388616630915.webp" alt="" /> Mobiles </a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388444682193.webp" alt="" /> Sweet Home </a>
-                                      </li>
-                                      <li>
-                                          <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/upload/category/1740388803723655.webp" alt="" /> Travel </a>
-                                      </li>
+                                      @endforeach
 
                                   </ul>
+
                               </div>
                               <div class="more_slide_open" style="display: none">
                                   <div class="d-flex categori-dropdown-inner">
                                       <ul>
                                           <li>
-                                              <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-1.svg" alt="" />Milks and Dairies</a>
+                                              <a href="shop-grid-right.html"> <img
+                                                      src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-1.svg"
+                                                      alt="" />Milks and Dairies</a>
                                           </li>
                                           <li>
-                                              <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-2.svg" alt="" />Clothing & beauty</a>
+                                              <a href="shop-grid-right.html"> <img
+                                                      src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-2.svg"
+                                                      alt="" />Clothing & beauty</a>
                                           </li>
                                       </ul>
                                       <ul class="end">
                                           <li>
-                                              <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-3.svg" alt="" />Wines & Drinks</a>
+                                              <a href="shop-grid-right.html"> <img
+                                                      src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-3.svg"
+                                                      alt="" />Wines & Drinks</a>
                                           </li>
                                           <li>
-                                              <a href="shop-grid-right.html"> <img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-4.svg" alt="" />Fresh Seafood</a>
+                                              <a href="shop-grid-right.html"> <img
+                                                      src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-4.svg"
+                                                      alt="" />Fresh Seafood</a>
                                           </li>
                                       </ul>
                                   </div>
                               </div>
-                              <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1">Show more...</span></div>
+                              <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1">Show
+                                      more...</span></div>
                           </div>
                       </div>
                       <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
@@ -300,82 +267,37 @@
                               <ul>
 
                                   <li>
-                                      <a class="active" href="https://digi-poly.id.vn">Home </a>
+                                      <a class="active" href="{{ route('home') }}">Home </a>
 
                                   </li>
 
+                                  @php
+                                  $categories = \App\Models\Category::inRandomOrder()->limit(6)->get();
+                                  @endphp
 
-
+                                  @foreach ($categories as $ct)
                                   <li>
-                                      <a href="https://digi-poly.id.vn/product/category/4/appliances">Appliances <i class="fi-rs-angle-down"></i></a>
-
-
+                                      <a
+                                          href="{{ route('product.category', ['id' => $ct->id, 'slug' => $ct->category_slug]) }}">
+                                          {{ $ct->category_name }} <i class="fi-rs-angle-down"></i>
+                                      </a>
                                       <ul class="sub-menu">
-
-                                          <li><a href="https://digi-poly.id.vn/product/subcategory/12/refrigerators">Refrigerators</a></li>
-
-                                          <li><a href="https://digi-poly.id.vn/product/subcategory/10/televisions">Televisions</a></li>
-
-                                          <li><a href="https://digi-poly.id.vn/product/subcategory/11/washing-machines">Washing Machines</a></li>
+                                          <li><a
+                                                  href="https://digi-poly.id.vn/product/subcategory/12/refrigerators">Refrigerators</a>
+                                          </li>
+                                          <li><a
+                                                  href="https://digi-poly.id.vn/product/subcategory/10/televisions">Televisions</a>
+                                          </li>
+                                          <li><a href="https://digi-poly.id.vn/product/subcategory/11/washing-machines">Washing
+                                                  Machines</a></li>
                                       </ul>
                                   </li>
-
-                                  <li>
-                                      <a href="https://digi-poly.id.vn/product/category/5/beauty">Beauty <i class="fi-rs-angle-down"></i></a>
-
-
-                                      <ul class="sub-menu">
-
-                                          <li><a href="https://digi-poly.id.vn/product/subcategory/16/woman-mackup">Woman Mackup</a></li>
-                                      </ul>
-                                  </li>
-
-                                  <li>
-                                      <a href="https://digi-poly.id.vn/product/category/2/electronics">Electronics <i class="fi-rs-angle-down"></i></a>
-
-
-                                      <ul class="sub-menu">
-
-                                          <li><a href="https://digi-poly.id.vn/product/subcategory/3/computer-peripherals">Computer Peripherals</a></li>
-
-                                          <li><a href="https://digi-poly.id.vn/product/subcategory/4/mobile-accessory">Mobile Accessory</a></li>
-                                      </ul>
-                                  </li>
-
-                                  <li>
-                                      <a href="https://digi-poly.id.vn/product/category/1/fashion">Fashion <i class="fi-rs-angle-down"></i></a>
-
-
-                                      <ul class="sub-menu">
-
-                                          <li><a href="https://digi-poly.id.vn/product/subcategory/2/mans-bottom-ware">Mans Bottom Ware</a></li>
-
-                                          <li><a href="https://digi-poly.id.vn/product/subcategory/6/mans-top-ware">Mans Top Ware</a></li>
-
-                                          <li><a href="https://digi-poly.id.vn/product/subcategory/7/women-footwear">Women Footwear</a></li>
-                                      </ul>
-                                  </li>
-
-                                  <li>
-                                      <a href="https://digi-poly.id.vn/product/category/8/furniture">Furniture <i class="fi-rs-angle-down"></i></a>
-
-
-                                      <ul class="sub-menu">
-                                      </ul>
-                                  </li>
-
-                                  <li>
-                                      <a href="https://digi-poly.id.vn/product/category/10/grocery">Grocery <i class="fi-rs-angle-down"></i></a>
-
-
-                                      <ul class="sub-menu">
-                                      </ul>
-                                  </li>
+                                  @endforeach
 
 
 
                                   <li>
-                                      <a href="https://digi-poly.id.vn/blog">Blog</a>
+                                      <a href="{{ route('home.blog') }}">Blog</a>
                                   </li>
                               </ul>
                           </nav>
@@ -384,7 +306,8 @@
 
 
                   <div class="hotline d-none d-lg-flex">
-                      <img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-headphone.svg" alt="hotline" />
+                      <img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-headphone.svg"
+                          alt="hotline" />
                       <p>1900 - 882<span>24/7 Support Center</span></p>
                   </div>
                   <div class="header-action-icon-2 d-block d-lg-none">
@@ -398,20 +321,23 @@
                       <div class="header-action-2">
                           <div class="header-action-icon-2">
                               <a href="shop-wishlist.html">
-                                  <img alt="Nest" src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-heart.svg" />
+                                  <img alt="Nest"
+                                      src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-heart.svg" />
                                   <span class="pro-count white">4</span>
                               </a>
                           </div>
                           <div class="header-action-icon-2">
                               <a class="mini-cart-icon" href="#">
-                                  <img alt="Nest" src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-cart.svg" />
+                                  <img alt="Nest"
+                                      src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-cart.svg" />
                                   <span class="pro-count white">2</span>
                               </a>
                               <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                   <ul>
                                       <li>
                                           <div class="shopping-cart-img">
-                                              <a href="shop-product-right.html"><img alt="Nest" src="https://digi-poly.id.vn/frontend/assets/imgs/shop/thumbnail-3.jpg" /></a>
+                                              <a href="shop-product-right.html"><img alt="Nest"
+                                                      src="https://digi-poly.id.vn/frontend/assets/imgs/shop/thumbnail-3.jpg" /></a>
                                           </div>
                                           <div class="shopping-cart-title">
                                               <h4><a href="shop-product-right.html">Plain Striola Shirts</a></h4>
@@ -423,7 +349,8 @@
                                       </li>
                                       <li>
                                           <div class="shopping-cart-img">
-                                              <a href="shop-product-right.html"><img alt="Nest" src="https://digi-poly.id.vn/frontend/assets/imgs/shop/thumbnail-4.jpg" /></a>
+                                              <a href="shop-product-right.html"><img alt="Nest"
+                                                      src="https://digi-poly.id.vn/frontend/assets/imgs/shop/thumbnail-4.jpg" /></a>
                                           </div>
                                           <div class="shopping-cart-title">
                                               <h4><a href="shop-product-right.html">Macbook Pro 2022</a></h4>
@@ -454,27 +381,27 @@
 
   <!-- End Header  -->
   <style>
-      #searchProducts {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          width: 100%;
-          background: #ffffff;
-          z-index: 999;
-          border-radius: 8px;
-          margin-top: 5px;
-      }
+#searchProducts {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    z-index: 999;
+    border-radius: 8px;
+    margin-top: 5px;
+}
   </style>
 
   <script>
-      function search_result_show() {
-          $("#searchProducts").slideDown();
+function search_result_show() {
+    $("#searchProducts").slideDown();
 
-      }
+}
 
-      function search_result_hide() {
-          $("#searchProducts").slideUp();
-      }
+function search_result_hide() {
+    $("#searchProducts").slideUp();
+}
   </script>
 
 
@@ -482,7 +409,8 @@
       <div class="mobile-header-wrapper-inner">
           <div class="mobile-header-top">
               <div class="mobile-header-logo">
-                  <a href="index.html"><img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/logo.svg" alt="logo" /></a>
+                  <a href="index.html"><img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/logo.svg"
+                          alt="logo" /></a>
               </div>
               <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
                   <button class="close-style search-close">
@@ -633,13 +561,22 @@
               </div>
               <div class="mobile-social-icon mb-50">
                   <h6 class="mb-15">Follow Us</h6>
-                  <a href="#"><img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-facebook-white.svg" alt="" /></a>
-                  <a href="#"><img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-twitter-white.svg" alt="" /></a>
-                  <a href="#"><img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-instagram-white.svg" alt="" /></a>
-                  <a href="#"><img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-pinterest-white.svg" alt="" /></a>
-                  <a href="#"><img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-youtube-white.svg" alt="" /></a>
+                  <a href="#"><img
+                          src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-facebook-white.svg"
+                          alt="" /></a>
+                  <a href="#"><img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-twitter-white.svg"
+                          alt="" /></a>
+                  <a href="#"><img
+                          src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-instagram-white.svg"
+                          alt="" /></a>
+                  <a href="#"><img
+                          src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-pinterest-white.svg"
+                          alt="" /></a>
+                  <a href="#"><img src="https://digi-poly.id.vn/frontend/assets/imgs/theme/icons/icon-youtube-white.svg"
+                          alt="" /></a>
               </div>
               <div class="site-copyright">Copyright 2022 © Nest. All rights reserved. Powered by AliThemes.</div>
           </div>
       </div>
-  </div> <!--End header-->
+  </div>
+  <!--End header-->

@@ -12,15 +12,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('coupons', function (Blueprint $table) {
-            $table->id(); 
-            $table->string('name'); 
-            $table->string('code')->unique(); 
-            $table->integer('discount'); 
-            $table->date('expiry_date');
-            $table->timestamps(); 
+            $table->id(); // ID tự động tăng
+            $table->string('coupon_name', 255); // Tên mã giảm giá
+            $table->integer('coupon_discount'); // Giá trị giảm giá
+            $table->string('coupon_validity', 255); // Thời hạn sử dụng
+            $table->integer('status')->default(1); // Trạng thái (1: Hoạt động, 0: Hết hạn)
+            $table->timestamps(); // created_at & updated_at
         });
     }
-    
+
 
     /**
      * Reverse the migrations.

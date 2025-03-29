@@ -2,100 +2,79 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Hash;  // Add this line to import Hash facade
+
 class UserController extends Controller
 {
-    public function UserDashboard(){
-
-        $id = Auth::user()->id;
-        $userData = User::find($id);
-        return view('index',compact('userData'));
-
+    public function UserDashboard()
+    {
+        $categories = Category::all();
+        return view('index', compact('categories'));
     } // End Method 
-
 
     public function UserProfileStore(Request $request)
     {
-        // Xác thực dữ liệu
         $request->validate([
-            'name' => 'required|string|max:255',
             'username' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'phone' => 'required|string|max:15',
-            'address' => 'required|string|max:255',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'phone' => 'required|numeric',
+            'address' => 'required|string',
+            'photo' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
-    
-        $id = Auth::user()->id;
-        $data = User::find($id);
-        $data->name = $request->name;
-        $data->username = $request->username;
-        $data->email = $request->email;
-        $data->phone = $request->phone;
-        $data->address = $request->address;
-    
-        // Xử lý file ảnh
-        if ($request->file('photo')) {
-            $file = $request->file('photo');
-            @unlink(public_path('upload/user_images/'.$data->photo));
-            $filename = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/user_images'), $filename);
-            $data->photo = $filename;
+
+        if ($request->hasFile('photo')) {
+            $imagePath = $request->file('photo')->store('user_images', 'public');
+        } else {
+            $imagePath = null;
         }
-    
-        $data->save();
-    
-        // Thông báo thành công
-        $notification = [
-            'message' => 'User Profile Updated Successfully',
-            'alert-type' => 'success',
-        ];
-    
-        // Giữ nguyên trang hiện tại
-        return redirect()->route('user.account.page')->with($notification);
+
+        $user = Auth::user();
+
+        $user->username = $request->username;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+
+        if ($imagePath) {
+            $user->photo = $imagePath;
+        }
+
+        $user->save();
+
+        return redirect()->route('user.profile.page');
     }
-    // End Mehtod 
 
-
-   public function UserLogout(Request $request){
-        Auth::guard('web')->logout();
-
+    public function UserLogout(Request $request)
+    {
+        // 
+        Auth::logout();
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
+        return redirect()->route('login');
+    } // End Method 
 
-         $notification = array(
-            'message' => 'User Logout Successfully',
-            'alert-type' => 'success'
-        );
-
-        return redirect('/login')->with($notification);
-    } // End Mehtod 
-
-
- public function UserUpdatePassword(Request $request){
-        // Validation 
+    public function UserUpdatePassword(Request $request)
+    {
         $request->validate([
-            'old_password' => 'required',
-            'new_password' => 'required|confirmed', 
+            'old_password' => 'required|string',
+            'new_password' => 'required|string|min:8|confirmed',
         ]);
 
-        // Match The Old Password
-        if (!Hash::check($request->old_password, auth::user()->password)) {
-            return back()->with("error", "Old Password Doesn't Match!!");
+        $user = Auth::user();
+
+        if (!Hash::check($request->old_password, $user->password)) {  // Use Hash facade here
+            return back()->withErrors(['old_password' => 'The provided old password is incorrect.']);
         }
 
-        // Update The new password 
-        User::whereId(auth()->user->id)->update([
-            'password' => Hash::make($request->new_password)
+        $user->password = Hash::make($request->new_password);  // Use Hash facade here
+        $user->save();
 
-        ]);
-        return back()->with("status", " Password Changed Successfully");
-
-    } // End Mehtod 
-
-
-} 
+        return back()->with('success', 'Password updated successfully.');
+    }
+}

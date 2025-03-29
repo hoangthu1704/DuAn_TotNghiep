@@ -24,8 +24,8 @@ class AllUserController extends Controller
 
     public function UserOrderPage()
     {
-
-        return view('frontend.userdashboard.user_order_page');
+        echo "đm";
+        // return view('frontend.userdashboard.user_order_page');
     } // End Method 
 
 

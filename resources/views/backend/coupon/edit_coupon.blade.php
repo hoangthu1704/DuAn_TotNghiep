@@ -29,13 +29,8 @@
 	<div class="card">
 		<div class="card-body">
 
-			<form id="myForm" method="post" action="{{ route('update.coupon', $coupon->id) }}">
-				@csrf
-				@method('PUT')
-			
-
-
-
+ <form id="myForm" method="post" action="{{ route('update.coupon') }}"   >
+			@csrf
 		 
 		<input type="hidden" name="id" value="{{ $coupon->id }}">	
 

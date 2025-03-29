@@ -31,8 +31,8 @@ class ProductController extends Controller
 
     public function AddProduct(){
         $show_brands = Brand::all();
-        $categories = Category::latest()->get();
-        return view('backend.product.product_add', compact('show_brands','categories'));
+        $show_categories = Category::where('parent_id', 0)->get();
+        return view('backend.product.product_add', compact('show_brands','show_categories'));
     } // End Method 
 
     public function InactiveProduct($id){
@@ -48,7 +48,7 @@ class ProductController extends Controller
             $muti_img = multi_imgs::where('product_id', $id)->get();
 
 
-            $thumnail = $pd->product_thumbnail;
+            $thumnail = $pd->product_thumnail;
             $pd->delete();
 
             File::delete(public_path($thumnail));
@@ -75,6 +75,7 @@ class ProductController extends Controller
         $request->validate([
             'brand_id' => 'required|exists:brands,id',
             'category_id' => 'required|exists:categories,id',
+            'subcategory_id' => 'required|exists:categories,id',
             'product_name' => 'required|string|max:255',
             'product_code' => 'required|string|max:255',
             'product_qty' => 'required|integer|min:1',
@@ -89,6 +90,8 @@ class ProductController extends Controller
         ], [
             'brand_id.required' => 'Vui lòng chọn thương hiệu.',
             'category_id.required' => 'Vui lòng chọn danh mục.',
+            'subcategory_id.required' => 'Vui lòng chọn danh mục con.',
+            'subcategory_id.exists' => 'Danh mục con không hợp lệ.',
             'product_name.required' => 'Tên sản phẩm không được để trống.',
             'product_code.required' => 'Mã sản phẩm không được để trống.',
             'product_qty.required' => 'Số lượng sản phẩm là bắt buộc.',
@@ -120,6 +123,7 @@ class ProductController extends Controller
 
         $product->brand_id = $request->brand_id;
         $product->category_id = $request->category_id;
+        $product->sub_category_id = $request->subcategory_id;
         $product->product_name = $request->product_name;
         $product->product_slug = Str::slug($request->product_name);
         $product->product_code = $request->product_code;
@@ -131,7 +135,7 @@ class ProductController extends Controller
         $product->long_descp = $request->detailed_description;
         $product->vendor_id = $request->vendor_id;
         $product->status = $request->status;
-        $product->product_thumbnail = $pthimage;
+        $product->product_thumnail = $pthimage;
 
         $product->save();
 
@@ -516,7 +520,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($request->id);;
 
         if ($request->hasFile('product_thambnail')) {
-            File::delete(public_path($product->product_thumbnail));
+            File::delete(public_path($product->product_thumnail));
 
             $fileImg = $request->file('product_thambnail');
             $path = 'upload/products/thambnail';
@@ -525,7 +529,7 @@ class ProductController extends Controller
             $fileImg->move($pathFromImg, $nameimg);
             $filePath = $path.'/'.$nameimg;
             $pthimage = $filePath;
-            $product->product_thumbnail = $pthimage;
+            $product->product_thumnail = $pthimage;
 
         }
 
@@ -569,6 +573,7 @@ class ProductController extends Controller
 
         $product->brand_id = $request->brand_id;
         $product->category_id = $request->category_id;
+        $product->sub_category_id = $request->subcategory_id;
         $product->product_name = $request->product_name;
         $product->product_slug = Str::slug($request->product_name);
         $product->product_code = $request->product_code;
