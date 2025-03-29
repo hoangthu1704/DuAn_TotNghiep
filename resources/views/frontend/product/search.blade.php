@@ -11,13 +11,13 @@
                 <div class="archive-header">
                     <div class="row align-items-center">
                         <div class="col-xl-3">
-                             
+
                             <div class="breadcrumb">
                                 <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                                <span></span> {{ $item }} 
+                                <span></span> {{ $item }}
                             </div>
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
@@ -80,12 +80,12 @@
                 <div class="product-img product-img-zoom">
                     <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">
                         <img class="default-img" src="{{ asset( $product->product_thambnail ) }}" alt="" />
-                        
+
                     </a>
                 </div>
                 <div class="product-action-1">
                     <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}" onclick="addToWishList(this.id)"  ><i class="fi-rs-heart"></i></a>
-                    
+
    <a aria-label="Compare" class="action-btn"  id="{{ $product->id }}" onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
 
    <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal" id="{{ $product->id }}" onclick="productView(this.id)" ><i class="fi-rs-eye"></i></a>
@@ -106,7 +106,7 @@
                     <span class="hot"> {{ round($discount) }} %</span>
                     @endif
 
-                    
+
                 </div>
             </div>
             <div class="product-content-wrap">
@@ -127,7 +127,7 @@
   <span class="font-small text-muted">By <a href="vendor-details-1.html">{{ $product['vendor']['name'] }}</a></span>
 
                     @endif
-                   
+
 
 
                 </div>
@@ -136,7 +136,7 @@
                     @if($product->discount_price == NULL)
                      <div class="product-price">
                         <span>${{ $product->selling_price }}</span>
-                       
+
                     </div>
 
                     @else
@@ -147,22 +147,22 @@
                     @endif
 
 
-                     
+
                     <div class="add-cart">
                         <a class="add" href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"><i class="fi-rs-shopping-cart mr-5"></i>Details </a>
                     </div>
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
     <!--end product card-->
     @endforeach
 
 
 
 
-                       
-                        
+
+
                     </div>
                     <!--product grid-->
                     <div class="pagination-area mt-20 mb-20">
@@ -182,10 +182,10 @@
                             </ul>
                         </nav>
                     </div>
-                    
+
                     <!--End Deals-->
 
-                    
+
                 </div>
                 <div class="col-lg-1-5 primary-sidebar sticky-sidebar">
                     <div class="sidebar-widget widget-category-2 mb-30">
@@ -204,15 +204,15 @@ $products = App\Models\Product::where('category_id',$category->id)->get();
         <li>
             <a href="shop-grid-right.html"> <img src=" {{ asset($category->category_image) }} " alt="" />{{ $category->category_name }}</a><span class="count">{{ count($products) }}</span>
         </li>
-        @endforeach 
+        @endforeach
                         </ul>
                     </div>
                     <!-- Fillter By Price -->
-                 
+
                     <!-- Product sidebar Widget -->
                     <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
                         <h5 class="section-title style-1 mb-30">New products</h5>
-                        
+
         @foreach($newProduct as $product)
         <div class="single-post clearfix">
             <div class="image">
@@ -226,7 +226,7 @@ $products = App\Models\Product::where('category_id',$category->id)->get();
                    @else
                    <p class="price mb-0 mt-5">${{ $product->discount_price }}</p>
                    @endif
-                
+
                 <div class="product-rate">
                     <div class="product-rating" style="width: 90%"></div>
                 </div>
@@ -235,9 +235,9 @@ $products = App\Models\Product::where('category_id',$category->id)->get();
       @endforeach
 
 
-                       
+
                     </div>
-                   
+
 
                 </div>
             </div>

@@ -88,26 +88,29 @@
                             </div>
 
 
+                            <div class="attr-detail attr-size mb-30">
+                                <strong class="mr-10" style="width:50px;">Size : </strong>
+                                <select class="form-control unicase-form-control" id="dsize">
+                                    <option selected="" disabled="">--Choose Size--</option>
+                                    <option value="Small">Small</option>
+                                    <option value="Midium">Midium</option>
+                                    <option value="Large">Large</option>
+                                </select>
+                            </div>
 
 
 
 
 
-
-                            @for ($i=0; $i < count($arrvalue); $i++)
-                                <div class="attr-detail attr-size mb-30">
-                                    <strong class="mr-10" style="width:100px;">{{ $arrvalue[$i][0] }} : </strong>
-                                    <select class="form-control unicase-form-control valvariant" onchange="selectvari()" id="dsize">
-                                        <option selected="" disabled="" value="">--Choose Size--</option>
-                                        @for ($j=0; $j < count($arrvalue[$i][1]); $j++)
-                                            <option value="{{ $arrvalue[$i][1][$j] }}">{{ $arrvalue[$i][1][$j] }}</option>
-                                        @endfor
-                                    </select>
-                                </div>
-                            @endfor
-
-
-
+                            <div class="attr-detail attr-size mb-30">
+                                <strong class="mr-10" style="width:50px;">Color : </strong>
+                                <select class="form-control unicase-form-control" id="dcolor">
+                                    <option selected="" disabled="">--Choose Color--</option>
+                                    <option value="Red">Red</option>
+                                    <option value="Blue">Blue</option>
+                                    <option value="Black">Black</option>
+                                </select>
+                            </div>
 
 
 
@@ -128,7 +131,11 @@
                                     <button type="submit" class="button button-add-to-cart" onclick="addToCartDetails()"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
 
 
-                                    <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                    <a aria-label="Add To Wishlist" class="action-btn hover-up" href="{{ route('add.to.wishList', 1) }}"><i class="fi-rs-heart"></i></a>
+                                    {{-- <a aria-label="Add To Wishlist" class="action-btn hover-up add-to-wishlist" data-id="">
+                                        <i class="fi-rs-heart"></i>
+                                    </a> --}}
+
                                     <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                 </div>
                             </div>
@@ -659,42 +666,26 @@
     </div>
 </div>
 
-<input type="text" name="variant_value"></input>
-<input type="hidden" id="idproduct" value="2"></input>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector('.add-to-wishlist').addEventListener('click', function (e) {
+            e.preventDefault();
 
+            let productId = this.getAttribute('data-id');
 
-
-<script type="text/javascript">
-    function selectvari(){
-        var valvariant = document.getElementsByClassName("valvariant");
-        var idproduct = document.getElementById("idproduct").value;
-        var flagv = false;
-        for (let i = 0; i < valvariant.length; i++) {
-            if(valvariant[i].value == ''){
-                flagv = true;
-            }
-        }
-
-        if(flagv == false){
-            fetch('http://127.0.0.1:8000/api/product/variant/'+idproduct)
-			.then(response => response.json())
-			.then(data => {
-                console.log(data);
-				}) 
-			.catch(error => console.error('Lỗi:', error));
-
-        }
-    }
-    function handleClick(){
-        let vop = document.getElementsByClassName("vop");
-        var value_ = '';
-        for (let i = 0; i < vop.length; i++) {
-            value_ += i == --vop.length ?  vop[i].value : vop[i].value + ", ";
-        }
-        document.getElementsByName('variant_value')[0].value = value_;
-    }
+            fetch(`/wishlist-add/${productId}`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message || data.error);
+            });
+        });
+    });
 </script>
-
-
 
 @endsection

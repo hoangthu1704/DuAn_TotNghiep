@@ -1548,6 +1548,7 @@
 	                                <div class="product-category">
 	                                    <a href="shop-grid-right.html">Fashion</a>
 	                                </div>
+
 	                                <h2><a href="https://digi-poly.id.vn/product/details/6/color-block-men-hooded-neck-red"> Color Block Men Hooded Neck Red </a></h2>
 	                                <div class="product-rate-cover">
 	                                    <div class="product-rate d-inline-block">

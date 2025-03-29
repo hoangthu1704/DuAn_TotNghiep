@@ -54,7 +54,7 @@ Route::get('/api/categories/{idpr}', [CategoryController::class, 'subcategoryapi
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
-    // Brand All Route 
+    // Brand All Route
     Route::controller(BrandController::class)->group(function () {
         Route::get('/all/brand', 'AllBrand')->name('all.brand');
         Route::get('/add/brand', 'AddBrand')->name('add.brand');
@@ -65,7 +65,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
 
-    // Category All Route 
+    // Category All Route
     Route::controller(CategoryController::class)->group(function () {
         Route::get('/all/category', 'AllCategory')->name('all.category');
         Route::get('/add/category', 'AddCategory')->name('add.category');
@@ -87,7 +87,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
 
-    // Product All Route 
+    // Product All Route
     Route::controller(ProductController::class)->group(function () {
         Route::get('/all/product', 'AllProduct')->name('all.product');
         Route::get('/add/product', 'AddProduct')->name('add.product');
@@ -109,7 +109,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
     });
 
-    // Banner All Route 
+    // Banner All Route
     Route::controller(BannerController::class)->group(function () {
         Route::get('/all/banner', 'AllBanner')->name('all.banner');
         Route::get('/add/banner', 'AddBanner')->name('add.banner.form'); //hiển thị form
@@ -120,18 +120,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
 
-   // Coupon All Route 
-   Route::controller(CouponController::class)->group(function () {
-    Route::get('/all/coupon', 'AllCoupon')->name('all.coupon');
-    Route::match(['get', 'post'], '/add/coupon', 'AddCoupon')->name('add.coupon');
-    Route::get('/edit/coupon/{id}', 'EditCoupon')->name('edit.coupon');
-    Route::put('/update/coupon/{id}', 'UpdateCoupon')->name('update.coupon');
+    // Coupon All Route
+    Route::controller(CouponController::class)->group(function () {
+        Route::get('/all/coupon', 'AllCoupon')->name('all.coupon');
+        Route::get('/add/coupon', 'AddCoupon')->name('add.coupon');
+    });
 
-    Route::delete('/delete/coupon/{id}', [CouponController::class, 'DeleteCoupon'])->name('delete.coupon');
-
-});
-
-    // Admin Order All Route 
+    // Admin Order All Route
     Route::controller(OrderController::class)->group(function () {
         Route::get('/pending/order', 'PendingOrder')->name('pending.order');
         Route::get('/admin/order/details/{id}', 'AdminOrderDetails')->name('admin.order.details'); //chi tiết đơn hàng
@@ -147,7 +142,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
 
-    // Return Order All Route 
+    // Return Order All Route
     Route::controller(ReturnController::class)->group(function () {
         Route::get('/return/request', 'ReturnRequest')->name('return.request');
 
@@ -155,14 +150,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
 
-    // Report All Route 
+    // Report All Route
     Route::controller(ReportController::class)->group(function () {
         Route::get('/report/view', 'ReportView')->name('report.view');
         Route::get('/order/by/user', 'OrderByUser')->name('order.by.user');
     });
 
 
-    // Active user and vendor All Route 
+    // Active user and vendor All Route
     Route::controller(ActiveUserController::class)->group(function () {
         //user
         Route::get('/all/user', 'AllUser')->name('all-user');
@@ -200,7 +195,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
 
-    // Admin Reviw All Route 
+    // Admin Reviw All Route
     Route::controller(ReviewController::class)->group(function () {
         Route::get('/pending/review', 'PendingReview')->name('pending.review');
         Route::get('/review/approve/{id}', 'ReviewApprove')->name('review.approve');
@@ -209,20 +204,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
 
-   
-    // Site Setting All Route 
+    // Site Setting All Route
     Route::controller(SiteSettingController::class)->group(function () {
-        Route::get('/site/setting', [SiteSettingController::class, 'editSiteSetting'])->name('site.setting');
-
-        Route::get('/seo/setting', 'SeoSetting')->name('seo.setting'); // Hiển thị trang SEO
-        Route::post('/site/setting/update/{id}', [SiteSettingController::class, 'UpdateSiteSetting'])->name('site.setting.update');
-
-
-
+        Route::get('/site/setting', 'SiteSetting')->name('site.setting');
+        Route::get('/seo/setting', 'SeoSetting')->name('seo.setting');
     });
 
 
-    // Permission All Route 
+    // Permission All Route
     Route::controller(RoleController::class)->group(function () {
         Route::get('/all/permission', 'AllPermission')->name('all.permission');
         Route::get('/add/permission', 'AddPermission')->name('add.permission');
@@ -233,7 +222,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
 
-    // Roles All Route 
+    // Roles All Route
     Route::controller(RoleController::class)->group(function () {
         Route::get('/all/roles', 'AllRoles')->name('all.roles');
         Route::get('/add/roles', 'AddRoles')->name('add.roles');
@@ -242,12 +231,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/all/roles/permission', 'AllRolesPermission')->name('all.roles.permission');
     });
 
-    // Admin User All Route 
+    // Admin User All Route
     Route::controller(AdminController::class)->group(function () {
         Route::get('/all/admin', 'AllAdmin')->name('all.admin');
         Route::get('/add/admin', 'AddAdmin')->name('add.admin');
     });
-}); // Admin End Middleware 
+}); // Admin End Middleware
 
 require __DIR__ . '/auth.php';
 
@@ -270,7 +259,7 @@ Route::middleware(['auth'])->group(function () {
 // Minh Tan Start
 Route::middleware(['auth', 'role:vendor'])->group(function () {
 
-    Route::get('/vendor/dashboard', [VendorController::class, 'VendorDashboard'])->name('vendor.dashobard');
+    Route::get('/vendor/dashboard', [VendorController::class, 'VendorDashboard'])->name('vendor.dashboard');
 
     Route::get('/vendor/logout', [VendorController::class, 'VendorDestroy'])->name('vendor.logout');
 
@@ -285,15 +274,12 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 
 
     // Anh Thu Start
-    // Vendor Add Product All Route 
+    // Vendor Add Product All Route
     Route::controller(VendorProductController::class)->group(function () {
         Route::get('/vendor/all/product', 'VendorAllProduct')->name('vendor.all.product');
         Route::get('/vendor/add/product', 'VendorAddProduct')->name('vendor.add.product');
 
-        
         Route::post('/vendor/store/product', 'VendorStoreProduct')->name('vendor.store.product');
-        Route::get('/vendor/store/product', 'VendorShowStoreProduct')->name('vendor.show.store.product');
-
         Route::get('/vendor/edit/product/{id}', 'VendorEditProduct')->name('vendor.edit.product');
 
         Route::post('/vendor/update/product', 'VendorUpdateProduct')->name('vendor.update.product');
@@ -313,7 +299,7 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
     // Anh Thu End
 
     // Phuong Thai Start
-    // Vendor Order All Route 
+    // Vendor Order All Route
     Route::controller(VendorOrderController::class)->group(function () {
         Route::get('/vendor/order', 'VendorOrder')->name('vendor.order');
 
@@ -342,9 +328,8 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 // Phuoc Vinh End
 
 // Duc Phu Start
-/// Frontend Product Details All Route 
+/// Frontend Product Details All Route
 
-Route::get('/api/product/variant/{id}', [IndexController::class, 'jsonvariantproduct']);
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
 
@@ -367,13 +352,13 @@ Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMi
 // Phuoc Vinh End
 
 // Phuong Thai Start
-/// Add to cart store data For Product Details Page 
+/// Add to cart store data For Product Details Page
 Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
 
-/// Add to Wishlist 
+/// Add to Wishlist
 Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishList']);
 
-/// Add to Compare 
+/// Add to Compare
 Route::post('/add-to-compare/{product_id}', [CompareController::class, 'AddToCompare']);
 // Phuong Thai End
 
@@ -386,10 +371,10 @@ Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 // Minh Tan End
 
 // Duc Phu Start
-// Checkout Page Route 
+// Checkout Page Route
 Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
 
-// Cart All Route 
+// Cart All Route
 Route::controller(CartController::class)->group(function () {
     Route::get('/mycart', 'MyCart')->name('mycart');
     Route::get('/get-cart-product', 'GetCartProduct');
@@ -401,7 +386,7 @@ Route::controller(CartController::class)->group(function () {
 // Duc Phu End
 
 // Quang Thanh Start
-// Frontend Blog Post All Route 
+// Frontend Blog Post All Route
 Route::controller(BlogController::class)->group(function () {
 
     Route::get('/blog', 'AllBlog')->name('home.blog');
@@ -410,7 +395,7 @@ Route::controller(BlogController::class)->group(function () {
 });
 
 
-// Frontend Blog Post All Route 
+// Frontend Blog Post All Route
 Route::controller(ReviewController::class)->group(function () {
 
     Route::post('/store/review', 'StoreReview')->name('store.review');
@@ -418,7 +403,7 @@ Route::controller(ReviewController::class)->group(function () {
 
 
 
-// Search All Route 
+// Search All Route
 Route::controller(IndexController::class)->group(function () {
 
     Route::post('/search', 'ProductSearch')->name('product.search');
@@ -430,17 +415,18 @@ Route::controller(IndexController::class)->group(function () {
 /// User All Route
 Route::middleware(['auth', 'role:user'])->group(function () {
 
-    // Wishlist All Route 
+    // Wishlist All Route
     Route::controller(WishlistController::class)->group(function () {
         Route::get('/wishlist', 'AllWishlist')->name('wishlist');
         Route::get('/get-wishlist-product', 'GetWishlistProduct');
         Route::get('/wishlist-remove/{id}', 'WishlistRemove');
+        Route::get('/wishlist-add/{product_id}', 'AddToWishList')->name('add.to.wishList');
     });
     // Minh Tan End
 
     // Phuong Thai Start
 
-    // Compare All Route 
+    // Compare All Route
     Route::controller(CompareController::class)->group(function () {
         Route::get('/compare', 'AllCompare')->name('compare');
         Route::get('/get-compare-product', 'GetCompareProduct');
@@ -450,7 +436,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
 
     // Phuoc Vinh Start
-    // Checkout All Route 
+    // Checkout All Route
     Route::controller(CheckoutController::class)->group(function () {
         Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
     });
@@ -464,11 +450,11 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     // Phuoc Vinh End
 
     // Anh Thu Start
-    // User Dashboard All Route 
+    // User Dashboard All Route
     Route::controller(AllUserController::class)->group(function () {
         Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
         Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
-        Route::post('/user/change/password', [UserController::class, 'ChangePassword'])->name('user.change.password');
+
         Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
 
         Route::get('/user/order_details/{order_id}', 'UserOrderDetails');
@@ -478,7 +464,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
         Route::get('/return/order/page', 'ReturnOrderPage')->name('return.order.page');
 
-        // Order Tracking 
+        // Order Tracking
         Route::get('/user/track/order', 'UserTrackOrder')->name('user.track.order');
         Route::post('/order/tracking', 'OrderTracking')->name('order.tracking');
     });

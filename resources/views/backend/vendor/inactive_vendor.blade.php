@@ -41,10 +41,10 @@
     @foreach($inactiveVendors as $key => $vendor)
     <tr>
         <th>{{ $key+1 }}</th>
-        <th>{{ $vendor->shop_name }} </th>
-        <th>{{ $vendor->vendor_username }}</th>
-        <th>{{ $vendor->join_date }} </th>
-        <th>{{ $vendor->vendor_email }} </th>
+        <th>{{ $vendor->name }} </th>
+        <th>{{ $vendor->username }}</th>
+        <th>{{ $vendor->vendor_join }} </th>
+        <th>{{ $vendor->email }} </th>
         <th>
             <span class="badge bg-warning">Inactive</span>
         </th>
@@ -55,7 +55,7 @@
             <!-- Form cập nhật trạng thái -->
             <form action="{{ route('vendor.updateStatus', $vendor->id) }}" method="POST" style="display:inline;">
                 @csrf
-                <button type="submit" class="btn btn-success">Duyệt</button>
+                <button type="submit" class="btn btn-success">Active</button>
             </form>
         </th>
     </tr>

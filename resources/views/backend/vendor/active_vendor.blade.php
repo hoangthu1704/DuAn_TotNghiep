@@ -40,32 +40,17 @@
 </thead>
 <tbody>
 
-{{-- <tr>
-	<td> 1 </td>
-	<td> Nest Food.,Ltd</td>
-	<td> vendor</td>
-	<td> 2023</td>
-	<td> vendor@gmail.com  </td>
-	<td> <span class="btn btn-success">active</span>   </td>
-
-	<td>
-<a href="{{route('active.vendor.details')}}" class="btn btn-info">Vendor Details</a>
-
-
-	</td>
-</tr> --}}
-
 @foreach($activeVendors as $key => $vendor)
 <tr>
     <td>{{ $key + 1 }}</td>
-    <td>{{ $vendor->shop_name }}</td>
-    <td>{{ $vendor->vendor_username }}</td>
-    <td>{{ $vendor->join_date }}</td>
-    <td>{{ $vendor->vendor_email }}</td>
+    <td>{{ $vendor->name }}</td>
+    <td>{{ $vendor->username }}</td>
+    <td>{{ $vendor->vendor_join }}</td>
+    <td>{{ $vendor->email }}</td>
     <td><span class="btn btn-success">Active</span></td>
     <td>
         <a href="{{ route('active.vendor.details', $vendor->id) }}" class="btn btn-info">Vendor Details</a>
-        
+
 
         <!-- Form cập nhật trạng thái -->
         <form action="{{ route('vendor.updateStatus', $vendor->id) }}" method="POST" style="display:inline;">
@@ -75,81 +60,6 @@
     </td>
 </tr>
 @endforeach
-
-{{-- <tr>
-	<td> 2 </td>
-	<td> Walton</td>
-	<td> walton</td>
-	<td> 2022</td>
-	<td> walton@gmail.com  </td>
-	<td> <span class="btn btn-success">active</span>   </td>
-
-	<td>
-<a href="{{route('active.vendor.details')}}" class="btn btn-info">Vendor Details</a>
-
-
-	</td>
-</tr>
-
-<tr>
-	<td> 3 </td>
-	<td> Sony</td>
-	<td> sony</td>
-	<td> 2022</td>
-	<td> sony@gmail.com  </td>
-	<td> <span class="btn btn-success">active</span>   </td>
-
-	<td>
-<a href="{{route('active.vendor.details')}}" class="btn btn-info">Vendor Details</a>
-
-
-	</td>
-</tr>
-
-<tr>
-	<td> 4 </td>
-	<td> Expart Fashion</td>
-	<td> expart</td>
-	<td> 2022</td>
-	<td> expart@gmail.com  </td>
-	<td> <span class="btn btn-success">active</span>   </td>
-
-	<td>
-<a href="{{route('active.vendor.details')}}" class="btn btn-info">Vendor Details</a>
-
-
-	</td>
-</tr>
-
-<tr>
-	<td> 5 </td>
-	<td> halal</td>
-	<td> Halal</td>
-	<td> 2022</td>
-	<td> halal@gmail.com  </td>
-	<td> <span class="btn btn-success">active</span>   </td>
-
-	<td>
-<a href="{{route('active.vendor.details')}}" class="btn btn-info">Vendor Details</a>
-
-
-	</td>
-</tr>
-
-<tr>
-	<td> 6 </td>
-	<td> FOUR-TVP</td>
-	<td> PuuGoo</td>
-	<td> 2025</td>
-	<td> puugoo002@gmail.com  </td>
-	<td> <span class="btn btn-success">active</span>   </td>
-
-	<td>
-<a href="{{route('active.vendor.details')}}" class="btn btn-info">Vendor Details</a>
-
-
-	</td>
-</tr> --}}
 
 
 </tbody>

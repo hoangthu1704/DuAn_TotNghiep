@@ -38,19 +38,21 @@
 					<h6 class="mb-0">Blog Category</h6>
 				</div>
 				<div class="form-group col-sm-9 text-secondary">
-                    {{-- <select name="category_id" class="form-select"> --}}
-                        {{-- <option selected disabled>Choose Category</option>
+                    <select name="category_id" class="form-select" required>
+                        <option selected disabled>Choose Category</option>
                         @foreach($blogcategory as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach --}}
-                        <select name="category_id" class="form-select" id="inputVendor">
+                            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                        @endforeach
+                    </select>
+
+                        {{-- <select name="category_id" class="form-select" id="inputVendor">
                             <option></option>
                                                     <option value="4">Baking material</option>
                                                      <option value="3">Fresh Fruit</option>
                                                      <option value="2">Pet Foods</option>
                                                      <option value="1">Clothing</option>
-                                                   </select>
-                    {{-- </select> --}}
+                        </select> --}}
+
 				</div>
 			</div>
 

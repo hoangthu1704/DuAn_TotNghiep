@@ -191,7 +191,7 @@
 				<label for="inputProductTitle" class="form-label">Main Thambnail <span class="text-danger">*</span></label>
 				<input name="product_thambnail" class="form-control" type="file" id="formFile" onChange="mainThamUrl(this)" accept="image/*">
 
-				<img style="width: 100px; height: 100px;" src="{{ asset($show_product->product_thumbnail) }}" id="mainThmb" />
+				<img style="width: 100px; height: 100px;" src="{{ asset($show_product->product_thumnail) }}" id="mainThmb" />
 			  </div>
 
 
@@ -267,7 +267,7 @@
 					</select>
 				  </div>
 
-				  {{-- <div class="form-group col-12">
+				  <div class="form-group col-12">
 					<label for="inputCollection" class="form-label">Product SubCategory <span class="text-danger">*</span></label>
 					<select name="subcategory_id" class="form-select" id="subcate">
 
@@ -282,7 +282,7 @@
 
 					  </select>
 
-				  </div> --}}
+				  </div>
 
 
 				  <div class="form-group col-12">

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('brand_id')->constrained('brands')->onDelete('restrict');
             $table->foreignId('category_id')->constrained('categories')->onDelete('restrict');
+            $table->foreignId('sub_category_id')->constrained('categories')->onDelete('restrict');
             $table->string('product_name',255);
             $table->string('product_slug',255);
             $table->string('product_code',255);
@@ -23,8 +24,8 @@ return new class extends Migration
             $table->decimal('selling_price', 10, 2);
             $table->decimal('discount_price', 10, 2)->nullable();
             $table->text('short_descp');
-            $table->text('long_descp');
-            $table->string('product_thumbnail',255);
+            $table->text('long_descp',255);
+            $table->string('product_thumnail',255);
             $table->integer('vendor_id')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();

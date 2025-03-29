@@ -40,7 +40,7 @@
     @foreach ($blogposts as $key => $post)
     <tr>
         <td>{{ $key + 1 }}</td>
-        <td>{{ $post->category->name ?? 'No Category' }}</td>
+        <td>{{ $post->category->category_name ?? 'No Category' }}</td>
         <td>
             <img src="{{ asset($post->image) }}" style="width: 70px; height:40px;">
         </td>
